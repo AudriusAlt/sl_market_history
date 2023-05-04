@@ -14,8 +14,8 @@
                     <th>Type</th>
                     <th>Card</th>
                     <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Total</th>
+                    <th>Price USD</th>
+                    <th>Price DEC</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,8 +25,8 @@
                     <td>{{ row.type }}</td>
                     <td>{{ row.card }}</td>
                     <td>{{ row.quantity }}</td>
-                    <td>{{ row.price }}</td>
-                    <td>{{ row.total }}</td>
+                    <td>{{ row.price_usd }}</td>
+                    <td>{{ row.price_dec }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

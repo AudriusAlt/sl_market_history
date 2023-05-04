@@ -30,15 +30,25 @@ def index():
                     'trx_id': tx["trx_id"]
                 }
                 response = requests.get(url, params=params).json()
-                #result_dict = json.loads(json.loads(response)['trx_info']['result'])
-                rows.append({
-                    'date': response['trx_info']['created_date'],
-                    'type': response['trx_info']['type'],
-                    'card': '-',
-                    'quantity': '-',
-                    'price': response['trx_info']['player'],
-                    'total': response['trx_info']['block_num']
-                })
+                result_string = response['trx_info']['result']
+                print(result_string)
+                result = json.loads(result_string)
+                by_seller = result["by_seller"]
+                for seller in by_seller:
+                    items = seller["items"]
+                    for item in items:
+                        rows.append({
+                            'date': response['trx_info']['created_date'],
+                            'type': response['trx_info']['type'],
+                            'card': item,
+                            'quantity': seller['seller'],
+                            'price_usd': result['total_usd'],
+                            'price_dec': result['total_dec']
+                        })
+
+
+
+
 
 
 
