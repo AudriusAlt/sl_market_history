@@ -3,6 +3,7 @@ from beem.account import Account
 from datetime import datetime, timedelta
 import requests
 import json
+from bchain import get_card_info
 
 
 app = Flask(__name__)
@@ -31,19 +32,24 @@ def index():
                 }
                 response = requests.get(url, params=params).json()
                 result_string = response['trx_info']['result']
-                print(result_string)
+
                 result = json.loads(result_string)
                 by_seller = result["by_seller"]
                 for seller in by_seller:
                     items = seller["items"]
                     for item in items:
+                        print('********************')
+                        print(result_string)
+                        print('********************')
+                        card_number, price = get_card_info(item)
+                        rate = result['total_usd'] / result['total_dec']
                         rows.append({
                             'date': response['trx_info']['created_date'],
                             'type': response['trx_info']['type'],
-                            'card': item,
+                            'card': card_number,
                             'quantity': seller['seller'],
-                            'price_usd': result['total_usd'],
-                            'price_dec': result['total_dec']
+                            'price_usd': price,
+                            'price_dec': price / rate
                         })
 
 
