@@ -12,7 +12,13 @@ def get_card_info(txid_index):
     trans = b.get_transaction(tx_id[0])
     json_string = trans['operations'][op]['value']['json']
     cards_info = json.loads(json_string)
-
+    print('===================================')
+    print(txid_index)
+    print('***********************************')
+    print(trans)
+    print(';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;')
+    print(cards_info)
+    print('===================================')
     if isinstance(cards_info, dict):
         try:
             card_id, old_price = get_card_info(cards_info['ids'][index])
