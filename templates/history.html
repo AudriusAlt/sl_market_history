@@ -3,6 +3,8 @@
 <head>
     <title>{{username}} History</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 </head>
 <body>
     <div class="container">
@@ -18,6 +20,7 @@
             </div>
             <button type="submit" class="btn btn-default">Submit</button>
         </form>
+        <p>Items processed: <span id="counter">{{ count }}</span></p>
         {% if rows %}
         <table class="table table-striped table-hover">
             <thead>
@@ -47,5 +50,6 @@
         </table>
         {% endif %}
     </div>
+     <div>Total execution time: {{ seconds }} seconds</div>
 </body>
 </html>
